@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <title>VideoPoker</title>
+</head>
+
+
+<body>
+    <h1 class="ecriture4">Vous avez quitté la partie !</h1>
+    <div>
+        {% if session['wallet'] == 0%}
+            <p class="ecriture4">Vous avez perdu !</p>
+        {% endif %}
+    
+        {% if session['wallet'] > 0%}
+            <p class="ecriture4">Vous repartez avec {{session ['wallet']}} $</p>
+        {% endif %}
+
+        <button class="cybr-btn" onclick="goHomePage()">
+            Retour a la page d'accueil <span aria-hidden></span>
+            <span aria-hidden class="cybr-btn__glitch">Bye</span>
+          </button>
+
+    </div>
+    <script src="{{url_for('static', filename='scrpt.js')}}"></script>
+</body>
+</html>

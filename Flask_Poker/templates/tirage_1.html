@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    
+        
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <title>VideoPoker</title>
+</head>
+<body >
+    <h1>First Round</h1>
+    <h2 class="ecriture2">Quels cartes souhaitez vous garder ?</h2>
+    <br>    
+    <form action="/board/round" method="POST">
+        <div class="header-playground">
+            <p class="ecriture3"> Votre Bankroll : {{ session['wallet'] }} $</p>
+            <p class="mise">Voici votre mise : {{ session['bet'] }} $</p>
+
+        </div>
+        <div class="card-playground">
+            {% for i in session['tirage_1'] %}
+                <img class="card-img" src="{{ url_for('static',filename='cards/'+i+'.png') }}" alt="card-video-poker"/>
+                <input type="checkbox" id="{{i}}" name="i" value="{{i}}" data-card="data-card" >
+            {% endfor %}
+        
+        </div>
+        <br>
+        <br>
+        <br>
+        <button  class="cybr-btn"  type="submit" value="Prochain tour ">
+            Prochain Tour <span aria-hidden></span>
+            <span aria-hidden class="cybr-btn__glitch">NEXT</span>
+        </button>
+    </form>
+</body>
+</html>

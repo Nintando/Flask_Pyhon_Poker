@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <title>VideoPoker</title>
+</head>
+<body>
+    <h1>Final Round</h1>
+    <form action="/board/round/round2" method="POST">
+        <div class="header-playground">
+            <p class="wallet ecriture2"> votre Bankroll : {{ session['wallet'] }} $</p>
+            <p class="gain">Voici votre gain : {{ session['gain'] }} $</p>
+            {% if session['message']%}
+                <p class="ecriture3">{{ session['message'] }}</p>    
+            {%endif%}
+        </div>
+        <div class="card-playground">
+            {% for i in session['tet']%}
+                <img class="card-img" src="{{ url_for('static',filename='cards/'+i+'.png') }}" alt="card-video-poker"/>
+            {% endfor %}
+        </div>
+    </form>
+    <br>
+    <br>
+
+    {% if session['wallet'] > 0 %}
+        <button onclick="restart()" class="cybr-btn"  type="submit">
+            ReJouer <span aria-hidden></span>
+            <span aria-hidden class="cybr-btn__glitch">LETS GO !</span>
+        </button>
+        <br>
+        <br>
+    
+        
+        <form action="/end" method="POST">
+            <input class="cybr-btn" type="submit" value="FIN DE PARTIE">
+        </form>
+    {% else %}
+
+    <form action="/end" method="POST">
+        <button class="cybr-btn" type="submit" >
+            Fin De Partie <span aria-hidden></span>
+            <span aria-hidden class="cybr-btn__glitch">LETS GO !</span>
+        </button>
+    </form>
+
+    {% endif %}
+    
+    <script src="{{url_for('static', filename='scrpt.js')}}"></script>
+</body>
+</html>

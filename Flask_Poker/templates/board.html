@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <title>VideoPoker</title>
+</head>
+<body>
+    <h1 class="ecriture"> La Table</h1>
+    <div class="header-playground">
+        {% if session['error-bet']%}
+            <div class="message-error">{{ session['error-bet'] }}</div>
+        {% endif %}
+    </div>
+    <div class="card-playground">
+        <img class="card-img" src="{{ url_for('static', filename='cards/back.png') }}" alt="card-back-video-poker" />
+        <img class="card-img" src="{{ url_for('static', filename='cards/back.png') }}" alt="card-back-video-poker" />
+        <img class="card-img" src="{{ url_for('static', filename='cards/back.png') }}" alt="card-back-video-poker" />
+        <img class="card-img" src="{{ url_for('static', filename='cards/back.png') }}" alt="card-back-video-poker" />
+        <img class="card-img" src="{{ url_for('static', filename='cards/back.png') }}" alt="card-back-video-poker" />
+    </div>
+        
+        <br>
+    <form action="/board" method="POST">
+        <p class="ecriture2">Votre Bankroll : {{ session['wallet'] }} $</p>
+        {% if session['error-bet'] %}
+            <div class="ecriture5 message-error">{{ session['error-bet'] }}</div>
+        {% endif %}       
+        <p class="ecriture2"> Entrez votre mise </p>
+        <input class="input2" name="bet"  min="1"  placeholder="mise" required>
+        <br>
+        <br>
+        <br>
+
+        <button class="cybr-btn">
+            Jouer <span aria-hidden></span>
+            <span  value="Play" aria-hidden class="cybr-btn__glitch">LETS GOO</span>
+          </button>
+    </form>
+</body>
+</html>
